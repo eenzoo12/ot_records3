@@ -23,9 +23,6 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#pending-tab" role="tab">𝐏𝐞𝐧𝐝𝐢𝐧𝐠</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#finished-tab" role="tab">𝐅𝐢𝐧𝐢𝐬𝐡𝐞𝐝</a>
-                </li>
 
             </ul>
             <div class="tab-content">
@@ -36,10 +33,6 @@
                 <div class="tab-pane" id="pending-tab" role="tabpanel">
                         
                         @include('pages.hr.pendingTab')
-                </div>
-                <div class="tab-pane" id="finished-tab" role="tabpanel">
-                        
-                        @include('pages.hr.finishedTab')
                 </div>
             </div>
         </div>

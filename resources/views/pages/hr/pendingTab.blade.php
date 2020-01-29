@@ -1,5 +1,5 @@
 <div style="overflow-x:auto;">
-<table id="mytable" class="table table-bordred table-striped" style="width:105%;">  
+<table id="mytable" class="table table-bordred table-striped" style="width:120%;">  
     <thead>
         <tr>
             <th>NAME</th>
@@ -11,8 +11,8 @@
             <th>TOTAL HRS</th>
             <th>JOB CONTENT</th>
             <th>RESULTS</th>
+            <th>SUPERVISOR</th>
             <th>MANAGER</th>
-            <th>KOREAN MANAGER</th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
                         <td>{{$report->name}}</td>
                         <td>{{$report->department->name}}</td>
                         <td>{{$report->date}}</td>
-                        <td>{{$report->shift_sched}}</td>
+                        <td>{{$report->shift->name}}</td>
                         <td>{{$report->time_from}}</td>
                         <td>{{$report->time_to}}</td>
                         <td>{{$report->time_hrs}}</td>

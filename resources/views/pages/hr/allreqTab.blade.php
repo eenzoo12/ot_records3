@@ -4,7 +4,7 @@
 
 <ul class="nav nav-justified" style="width:110%; justify-content:right;">
     <li class="nav-item">
-        <form action="" method="get">
+        <form action="searchRequestForm" method="get">
             <div class="input-group">
                 <div data-v-29a3ebe0="" id="" class="input-group-text">FROM :</div>
                 <input type="date" name="otfrom" id="otfrom" value="2020-01-01" class="form-control">
@@ -43,8 +43,8 @@
             <th>TOTAL HRS</th>
             <th>JOB CONTENT</th>
             <th>RESULTS</th>
+            <th>SUPERVISOR</th>
             <th>MANAGER</th>
-            <th>KOREAN MANAGER</th>
             <th>DATE APPROVED</th>
         </tr>
     </thead>
@@ -53,11 +53,12 @@
             @isset($reports)
             @if ($reports->count() > 0)
                 @foreach ($reports as $report)
+                    @if($report->second_process == 'Approved')
                     <tr>
                         <td>{{$report->name}}</td>
                         <td>{{$report->department->name}}</td>
                         <td>{{$report->date}}</td>
-                        <td>{{$report->shift_sched}}</td>
+                        <td>{{$report->shift->name}}</td>
                         <td>{{$report->time_from}}</td>
                         <td>{{$report->time_to}}</td>
                         <td>{{$report->time_hrs}}</td>
@@ -67,6 +68,7 @@
                         <td>{{$report->second_process}}</td>
                         <td>{{$report->updated_at}}</td>
                     </tr>
+                    @endif
                 @endforeach
             @else
                 <tr>

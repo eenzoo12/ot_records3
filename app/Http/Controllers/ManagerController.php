@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ot_tbl;
 
-class ManagerController extends Controller
+class KManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -71,30 +72,6 @@ class ManagerController extends Controller
         //
     }
 
-    public function approve(Request $request)
-    {
-        // Myroutes::where('id', $id)
-        //         ->update(['start' => $request->input('start'),
-        //                  'end'=>$request->input('end'),
-        //                  'waypoint'=>$request->input('waypoints')]
-        //                 );
-       $id = $request->input('id');
-        DB::table('ot_table')
-        ->where('id', $id)
-        ->update(['first_process'=>'Approved']);
-
-        return 'success';
-        // $report = ot_table::wherein('id', $request->input('.checkitem:checked'))
-        //         ->update(['first_process'=>'Approved']);
-        // // $report->save();
-        // return redirect('manager')->with('success');
-    }
-    public function decline(Request $request)
-    {
-
-    }
-    
-
     /**
      * Remove the specified resource from storage.
      *
@@ -104,5 +81,21 @@ class ManagerController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function approve(Request $request)
+    {
+       $id = $request->input('id');
+       ot_tbl::whereIn('id', $id)
+        ->update(['second_process'=>'Approved']);
+
+        return 'success';
+    }
+    public function decline(Request $request)
+    {
+        $id = $request->input('id');
+        ot_tbl::whereIn('id', $id)
+         ->update(['second_process'=>'Decline']);
+ 
+         return 'success';
     }
 }

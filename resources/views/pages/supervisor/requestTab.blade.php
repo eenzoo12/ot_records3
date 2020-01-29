@@ -19,7 +19,7 @@
                 </div>
                 <div style="float:middle" class="col-sm-5">
                     <div style="border: 1px solid rgba(0, 0, 0, 0.125); padding: 5px; ">
-                        <input type="file" name="excellfile">
+                        <input type="file" name="select_file">
                     </div>
                 </div>
                 <div style="float:right" class="col-sm-2">
@@ -30,7 +30,7 @@
         </div>
         </div>
     </div>
-    <form id="requestSaveForm" action="{{ action('SupervisorController@store') }}" method="POST">
+    <form id="requestSaveForm" action="{{ action('RequesterController@store') }}" method="POST">
         @csrf
     <div class="row">
         <div class="col-md-4">

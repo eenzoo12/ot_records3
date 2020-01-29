@@ -1,6 +1,6 @@
 
 <div style="overflow-x:auto;">
-    <table id="mytable" class="table table-bordred table-striped" style="width:105%;">  
+    <table id="mytable" class="table table-bordred table-striped" style="width:110%;">  
         <thead>
             <tr>
                 <th>NAME</th>
@@ -16,7 +16,7 @@
                 <th>KOREAN MANAGER</th>
             </tr>
         </thead>
-        <tbody class="pending-req">
+        <tbody>
             @if(Auth::user()->position_id==4)
                 @isset($reports)
                 @if ($reports->count() > 0)

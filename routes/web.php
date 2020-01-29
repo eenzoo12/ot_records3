@@ -26,29 +26,27 @@ Route::resources([
 
 //Request Overtime
 Route::resources([
-    'requests' => 'SupervisorController',
+    'requests' => 'RequesterController',
 ]);
-// Request Approve by Manager
-Route::get('approve1', 'ManagerController@approve');
-Route::get('decline1', 'ManagerController@decline');
+// User Registration
+Route::post('registerUser', 'UserController@store');
+
+
+// Request Approve by Supervisor
+Route::post('approve1', 'SupervisorController@approve');
+Route::post('decline1', 'SupervisorController@decline');
+
+// Request Approval by Manager
+Route::post('approve2', 'ManagerController@approve');
+Route::post('decline2', 'ManagerController@decline');
 
 
 // View Pages
 Route::get('/admin', 'HomeController@admin');
+Route::get('/supervisor', 'HomeController@supervisor');
 Route::get('/manager', 'HomeController@manager');
-Route::get('/kmanager', 'HomeController@kmanager');
 Route::get('/hr', 'HomeController@hr');
-Route::get('/requester', 'HomeController@supervisor');
+Route::get('/requester', 'HomeController@requester');
 
 
-
-// Route::get('/hr/allreq', function(){
-//     view('pages.overtime.hr');
-// });
-// Route::get('/hr/pending', function(){
-//     view('pages.overtime.hr');
-// });
-// Route::get('/hr/finished', function(){
-//     view('pages.overtime.hr');
-// });
 

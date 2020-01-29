@@ -4,13 +4,6 @@
 @section('content')
 
 <body class="body">
-        <div class="row form-group">
-                <div class="col-md-4"></div>
-                <div class="col-md-4" >
-                    @include('inc.message')
-                </div>
-                <div class="col-md-3"></div>
-            </div>
     <div class="container1">
         <div class="card text-middle">
             <div class="card-header">
@@ -105,10 +98,11 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{ action('UserController@store') }}" method="POST">
+                        <form id="addUserForm">
+                                {{-- action="{{ action('UserController@store') }}" --}}
                                 {{csrf_field()}}
                         <div class="modal-body">
-                            @include('includes.regform')
+                            @include('includes.regform') 
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-dismiss="modal">Close</button>

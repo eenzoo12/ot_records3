@@ -1,14 +1,17 @@
 @extends('layouts.app')
 
-@section('content')
+@section('js')
+    <script src="{{ asset('js\overall.js') }}" defer></script>
+@endsection
 
+@section('content')
 <body class="body">
     <div class="container1">
         <div class="card text-middle">
             <div class="card-header">
                 <div class="row" style="margin: 20px 0px;">
                     <div class="col-md-9">
-                        <h1 style="text-align:center;">KOREAN MANAGER</h1>
+                        <h1 style="text-align:center;">SUPERVISOR</h1>
                     </div> 
                     <div class="col-md-3">
                         <form action="{{url('search')}}" method="GET" style=" text-align:center">
@@ -24,21 +27,21 @@
             <div class="card-body">
                 <br>
                 <div class="row">
-                        <div class="col-md-9 ">
-                            <h3 style="margin-left:10%;">TO BE APPROVE</h3>
-                        </div>
-                        <div class="col-md-3">
-                            <h1 class="kreep" style="margin-right:2%">
-                                <button type="button" name="bulk_approve2" id="bulk_approve2" class="btn btn-app2 btn-success btn-xs "><i class="fa fa-check"></i>&nbsp; APPROVE</button>
-                            </h1>
-                            <h1 class="wiggle">   
-                                <button type="button" name="bulk_decline2" id="bulk_decline2" class="btn btn-decl2 btn-danger btn-xs"><i class="fa fa-trash"></i>&nbsp; DECLINE</button> 
-                            </h1>
-                        </div>
+                    <div class="col-md-9 ">
+                        <h3 style="margin-left:10%;">TO BE APPROVE</h3>
                     </div>
+                    <div class="col-md-3">
+                        <h1 class="kreep" style="margin-right:2%">
+                            <button type="button" id="bulk_approve1" class="btn btn-app1 btn-success btn-xs "><i class="fa fa-check"></i>&nbsp; APPROVE</button>
+                        </h1>
+                        <h1 class="wiggle">   
+                            <button type="button" id="bulk_decline1" class="btn btn-decl1 btn-danger btn-xs"><i class="fa fa-trash"></i>&nbsp; DECLINE</button> 
+                        </h1>
+                    </div>
+                </div>
                 <br>
                 <div style="overflow-x:auto;">
-                    <table id="mytable" class="table table-bordred table-striped" >  
+                    <table id="mytable" class="table table-bordred table-striped" style="width:105%;">  
                         <thead>
                         <tr>
                             <td><input type="checkbox" id="checkall"></td>
@@ -59,10 +62,10 @@
                                 @isset($reports)
                                 @if ($reports->count() > 0)
                                     @foreach ($reports as $report)
-                                        @if($report->first_process == "Approved" && $report->second_process != "Approved")
+                                        @if($report->first_process == "")
 
                                         <tr >
-                                            <td><input type="checkbox" id="checkitem" name="update[]" value="{{$report->id }}"></td>
+                                            <td><input type="checkbox" class="checkitem" value="{{$report->id }}"></td>
                                             <td>{{$report->name}}</td>
                                             <td>{{$report->department->name}}</td>
                                             <td>{{$report->date}}</td>
@@ -95,6 +98,7 @@
                             @endif
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
             
@@ -107,7 +111,6 @@
     <footer style="position:absolute; width:100%;">
         @include('includes.footer')
     </footer>
-
 @endsection
 
 

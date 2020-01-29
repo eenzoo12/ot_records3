@@ -41,11 +41,11 @@ class HomeController extends Controller
         }
         elseif((Auth::user()->position_id==2))
         {
-            return redirect('kmanager');
+            return redirect('manager');
         }
         elseif((Auth::user()->position_id==3))
         {
-            return redirect('manager');
+            return redirect('supervisor');
         }
         elseif((Auth::user()->position_id==4))
         {
@@ -70,24 +70,24 @@ class HomeController extends Controller
 
         return view('pages.overtime.admin', compact('employees','positions', 'departments'));
     }
-    public function kmanager()
+    public function manager()
     {
         $agencies = agency::all();
         $employees = User::all();
         $shifts = ot_shift::all();
         
-        $reports = ot_tbl::paginate(10);
-        return view('pages.overtime.approveKM', compact('reports', 'agencies', 'employees', 'shifts'));
+        $reports = ot_tbl::paginate(5);
+        return view('pages.overtime.approveM', compact('reports', 'agencies', 'employees', 'shifts'));
     }                                                                                                                                                                
-    public function manager()
+    public function supervisor()
     {
         $agencies = agency::all();
         $employees = User::all();
         $shifts = ot_shift::all();
         $dept = Auth::user()->department_id;
 
-        $reports = ot_tbl::where('department_id', 'like', $dept)->paginate(10);
-        return view('pages.overtime.approveM', compact('reports', 'agencies', 'employees', 'shifts'));
+        $reports = ot_tbl::where('department_id', 'like', $dept)->paginate(5);
+        return view('pages.overtime.approveS', compact('reports', 'agencies', 'employees', 'shifts'));
     }
     public function hr(Request $req)
     {
@@ -111,7 +111,7 @@ class HomeController extends Controller
 
         return view('pages.overtime.hr', compact('reports', 'agencies', 'employees', 'shifts'));
     }
-    public function supervisor(Request $req)
+    public function requester(Request $req)
     {
         $agencies = agency::all();
         $employees = User::all();
@@ -120,7 +120,7 @@ class HomeController extends Controller
 
         // $reports = ot_tbl::paginate(10);
         $reports = ot_tbl::where('department_id', 'like', $dept)->paginate(10);
-        return view('pages.overtime.supervisor', compact('reports', 'agencies', 'employees', 'shifts'));
+        return view('pages.overtime.requester', compact('reports', 'agencies', 'employees', 'shifts'));
     }
 
 

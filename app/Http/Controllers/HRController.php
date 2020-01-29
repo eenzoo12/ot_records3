@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ot_tbl;
 
-class ManagerController extends Controller
+class HRController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,6 +26,14 @@ class ManagerController extends Controller
         //
     }
 
+    public function approve(Request $request)
+    {
+       $id = $request->input('id');
+       ot_tbl::whereIn('id', $id)
+        ->update(['third_process'=>'Finished']);
+
+        return 'success';
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -71,24 +78,6 @@ class ManagerController extends Controller
     {
         //
     }
-
-    public function approve(Request $request)
-    {
-       $id = $request->input('id');
-       ot_tbl::whereIn('id', $id)
-        ->update(['first_process'=>'Approved']);
-
-        return 'success';
-    }
-    public function decline(Request $request)
-    {
-        $id = $request->input('id');
-        ot_tbl::whereIn('id', $id)
-         ->update(['first_process'=>'Decline']);
- 
-         return 'success';
-    }
-    
 
     /**
      * Remove the specified resource from storage.

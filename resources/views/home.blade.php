@@ -36,16 +36,16 @@ h5, h2{
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-3 text-center">
-                    <a href="{{ url('kmanager') }}">
+                    <a href="{{ url('manager') }}">
                         <img src="{{asset('images\img5.png')}}" alt="profile" height="80%" width="100%">
                     </a>
-                    <h5>𝐊𝐎𝐑𝐄𝐀𝐍 𝐌𝐀𝐍𝐀𝐆𝐄𝐑</h5>
+                    <h5>𝐌𝐀𝐍𝐀𝐆𝐄𝐑</h5>
                 </div>
                 <div class="col-md-3 text-center">
-                    <a href="{{ url('manager') }}">
+                    <a href="{{ url('supervisor') }}">
                         <img src="{{asset('images\img10.png')}}" alt="profile" height="80%" width="100%">
                     </a>
-                    <h5>𝐌𝐀𝐍𝐀𝐆𝐄𝐑</h5>
+                    <h5>𝐒𝐔𝐏𝐄𝐑𝐕𝐈𝐒𝐎𝐑</h5>
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="{{ url('requester') }}">

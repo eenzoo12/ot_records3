@@ -63,7 +63,7 @@ class UserController extends Controller
         $register->department_id = $request->department;
         $register->save();
 
-        return redirect('admin')->with('success','Successfully created!!');
+        return 'success';
     }
 
     function getdata()
