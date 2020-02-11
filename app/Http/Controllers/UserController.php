@@ -17,8 +17,17 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $employees = User::all();
-        return view('pages.overtime.admin',compact('employees'));
+        $positions = position_tbl::all();
+        $departments = department_tbl::all();
+        $name = $request->input('searchtxt');
+        if($name == ""){
+            $employees = User::orderBy('id', 'DESC')->paginate(10);
+        }
+        else{
+            $employees = User::where('name', 'like', '%'.$name.'%')->paginate(10);
+        }
+
+        return view('includes.table.adminTbl',compact('employees', 'positions', 'departments'));
     }
 
     /**
@@ -88,7 +97,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -119,7 +128,7 @@ class UserController extends Controller
         $employee->department_id = $request->department;
         $employee->save();
        
-        return redirect('admin')->with('success','Successfully updated!!');
+        return 'success';
     }
 
     /**
@@ -133,7 +142,7 @@ class UserController extends Controller
         $employee = User::findOrFail($request->employee_id);
         $employee->delete();
        
-        return redirect('admin')->with('success','Successfully deleted!!');
+        return 'success';
     }
 
 

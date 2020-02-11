@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('js')
-    <script src="{{ asset('js\custom.js') }}" defer></script>
+    <script src="{{ asset('js\rqt.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -11,6 +11,7 @@
     <div class="card text-middle">
         <div class="card-header">
             <div class="row" style="margin: 20px 0px;">
+                
                 <div class="col-md">
                         <h1 style="text-align:center;"> REQUESTER </h1>
                 </div>
@@ -28,10 +29,12 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="req-tab" role="tabpanel">
-                        @include('pages.supervisor.requestTab')
+                        @include('pages.requester.requestTab')
                 </div>
                 <div class="tab-pane" id="pend-tab" role="tabpanel">
-                        @include('pages.supervisor.pendingTab')
+                    <div id="requestTable">
+                        {{-- JS connected table --}}
+                    </div>
                 </div>
             </div>
            

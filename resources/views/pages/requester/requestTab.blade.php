@@ -8,32 +8,30 @@
         </div>
         <div class="col-md-6" >
             <div style="border: 1px solid rgba(0, 0, 0, 0.125); padding:5px; width:100%; margin-top:20px;">
-            <div class="row" style="justify-content:center;">
-                <label >To Request Bulk Overtime:</label>
-            </div>
-        <form action="{{url('/upload')}}" method="POST" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <div class="row" style="justify-content:center;">
-                <div style="float:left" class="col-sm-4" >
-                    <a href="{{ url('/download/template.xlsx')}}" class="btn btn-success"><i class="fa fa-download"></i> Download Template</a>
+                <div class="row" style="justify-content:center;">
+                    <label >To Request Bulk Overtime:</label>
                 </div>
-                <div style="float:middle" class="col-sm-5">
-                    <div style="border: 1px solid rgba(0, 0, 0, 0.125); padding: 5px; ">
-                        <input type="file" name="select_file">
+                <div class="row" style="justify-content:center;">
+                    <div style="float:left" class="col-sm-4" >
+                        <a href="{{ url('/download/template.xlsx')}}" class="btn btn-success"><i class="fa fa-download"></i> Download Template</a>
                     </div>
+                    {{-- Uploading Multiple Overtime Request --}}
+                    <form action="{{url('')}}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div style="border: 1px solid rgba(0, 0, 0, 0.125); padding: 5px; ">
+                            <input type="file" name="select_file">
+                            <button type="submit" style="margin:5px 15px 0 0;"> Go </button>
+                        </div>
+                    </form>
+                    {{-- End of Overtime Request --}}
                 </div>
-                <div style="float:right" class="col-sm-2">
-                        <button type="submit" style="margin:5px 15px 0 0;"> Go </button>
-                    </div>
             </div>
-            </form>
-        </div>
         </div>
     </div>
     <form id="requestSaveForm" action="{{ action('RequesterController@store') }}" method="POST">
         @csrf
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" style="margin-top:20px;">
                 <div class="form-group">
                     <label>Name: </label>
                     <input type="text" class="form-control" name="name" required>
@@ -42,11 +40,6 @@
                 <div class="form-group">
                     <label>Date: </label>
                     <input type="date" class="form-control" name="date" required>
-                </div>
-                <label>Period Covered: </label>
-                <div class="row" style="margin-left:0px; margin-bottom:15px;">
-                    <input type="date" class="form-control" style="width:46%;" name="periodfrom" required> &nbsp;&nbsp;
-                    <input type="date" class="form-control" style="width:46%;" name="periodto" required>
                 </div>
                 <label>Shift Schedule:</label>
                 <div class="form-group">
@@ -80,7 +73,7 @@
             
         </div>
         <div class="col-md-4">
-            <div class="card text-center" style="margin-left:-5px; margin-top:50px;">
+            <div class="card text-center" style="margin-left:-5px; margin-top:20px;">
                 <div class="card-header">
                     <h3>Actual Overtime</h3>
                 </div>

@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\agency;
+use App\User; 
 use App\ot_tbl;
+use App\ot_shift;
+use Auth;
 
-class ManagerController extends Controller
+class SupervisorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +18,15 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $agencies = agency::all();
+        $employees = User::all();
+        $shifts = ot_shift::all();
+        $dept = Auth::user()->department_id;
 
+        
+        $reports = ot_tbl::where('department_id', 'like', $dept)->where('first_process', 'like', '')->orderBy('id', 'DESC')->paginate(10);
+        return view('includes.table.supervisorTbl', compact('reports', 'agencies', 'employees', 'shifts'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -84,7 +94,7 @@ class ManagerController extends Controller
     {
         $id = $request->input('id');
         ot_tbl::whereIn('id', $id)
-         ->update(['first_process'=>'Decline']);
+         ->update(['first_process'=>'Declined']);
  
          return 'success';
     }

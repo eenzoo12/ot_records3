@@ -7,10 +7,12 @@ use App\agency;
 use App\User; 
 use App\ot_tbl;
 use App\ot_shift;
+use Auth;
 use Excel;
 use DB;
 
-class SupervisorController extends Controller
+
+class RequesterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +24,14 @@ class SupervisorController extends Controller
         $employees = User::all();
         $agencies = agency::all();
         $shift = ot_shift::all();
-        return view('pages.overtime.requester',compact('employees','agencies','shift'));
+        $dept = Auth::user()->department_id;
+        
+        $reports = ot_tbl::where('department_id', 'like', $dept )
+                        ->where('first_process', '!=', 'Declined' )
+                        ->where('second_process', '!=', 'Approved' )
+                        ->where('second_process', '!=', 'Declined' )
+                        ->orderBy('id', 'DESC')->paginate(10);
+        return view('pages.requester.pendingTab',compact('reports','employees','agencies','shift' ));
     }
 
     public function import(Request $req)
@@ -32,7 +41,7 @@ class SupervisorController extends Controller
         ]);
 
         $path = $req->file('select_file')->getRealPath();
-
+ 
         $data = Excel::load($path)->get();
 
         if($data->count() > 0 )
@@ -44,8 +53,6 @@ class SupervisorController extends Controller
                     $insert_data[] = array(
                         'name' => $row['Name'],
                         'department_id' => $row['Department_ID'],
-                        'period_from' => $row['Period_From'],
-                        'period_to' => $row['Period_To'],
                         'date' => $row['Date'],
                         'shift_sched' => $row['Shift_ID'],
                         'agency_id' => $row['Agency_ID'],
@@ -56,7 +63,6 @@ class SupervisorController extends Controller
                         'time_hrs' => $row['Time_hrs'],
                         'first_process' => '',
                         'second_process' => '',
-                        'third_process' =>'',
                     );
                 }
             }
@@ -93,8 +99,6 @@ class SupervisorController extends Controller
             'name' => 'required|string',
             'date' => 'required|date',
             'department_id' => 'required|integer',
-            'periodfrom' => 'required|date',
-            'periodto' => 'required|date',
             'jcontent' => 'required|string',
             'results' => 'required|string',
             'shift' => 'required|integer',
@@ -123,8 +127,6 @@ class SupervisorController extends Controller
         $request->third_process='';
         $request->save();
     
-
-        /* return redirect('supervisor')->with('success','Successfully created!!'); */
         return 'success';
     }
 

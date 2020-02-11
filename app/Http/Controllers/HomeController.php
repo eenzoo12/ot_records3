@@ -62,10 +62,10 @@ class HomeController extends Controller
         $departments = department_tbl::all();
 
         if($req->input('search') == ''){
-            $employees = User::paginate(5);
+            $employees = User::orderBy('id', 'DESC')->paginate(10);
         }
         else{
-            $employees = User::where('name', 'like', '%'.$req->input('search').'%')->paginate(5);
+            $employees = User::where('name', 'like', '%'.$req->input('search').'%')->orderBy('id', 'DESC')->paginate(10);
         }
 
         return view('pages.overtime.admin', compact('employees','positions', 'departments'));
@@ -118,7 +118,6 @@ class HomeController extends Controller
         $shifts = ot_shift::all();
         $dept = Auth::user()->department_id;
 
-        // $reports = ot_tbl::paginate(10);
         $reports = ot_tbl::where('department_id', 'like', $dept)->paginate(10);
         return view('pages.overtime.requester', compact('reports', 'agencies', 'employees', 'shifts'));
     }

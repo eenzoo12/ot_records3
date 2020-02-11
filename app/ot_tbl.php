@@ -11,7 +11,7 @@ use App\department;
 class ot_tbl extends Model
 {
 	protected $fillable = [
-        'name', 'date', 'department_id', 'periodfrom', 'periodto', 'date', 'shift', 'agency', 'jcontent', 'results', 'tfrom', 'tto', 'hrs',
+        'name', 'date', 'department_id', 'date', 'shift', 'agency', 'jcontent', 'results', 'tfrom', 'tto', 'hrs',
     ];
 	
     public function agency()

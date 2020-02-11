@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('js')
+    <script src="{{ asset('js\hr.js') }}" defer></script>
+@endsection
+
 @section('content')
 <body class="body">
 <div class="container1">
@@ -20,20 +24,19 @@
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#allreq-tab" role="tab">𝐀𝐥𝐥 𝐑𝐞𝐪𝐮𝐞𝐬𝐭</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#pending-tab" role="tab">𝐏𝐞𝐧𝐝𝐢𝐧𝐠</a>
-                </li>
+                </li> --}}
 
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="allreq-tab" role="tabpanel">
-                        
-                        @include('pages.hr.allreqTab')
+                    @include('pages.hr.allreqTab')
                 </div>
-                <div class="tab-pane" id="pending-tab" role="tabpanel">
+                {{-- <div class="tab-pane" id="pending-tab" role="tabpanel">
                         
                         @include('pages.hr.pendingTab')
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

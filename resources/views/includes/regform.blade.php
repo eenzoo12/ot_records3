@@ -2,21 +2,21 @@
 
 <div class="col-md-10">
     <div class="form-group">
-        <input id="name" type="text" placeholder="Full Name *" class="form-control" name="name" value="" required>
+        <input type="text" placeholder="Full Name *" class="form-control" name="name" value="" required>
     </div>
     <div class="form-group">
-        <input type="text" minlength="10" placeholder="Phone Number *" maxlength="11" name="phone" class="form-control"  value="" />
+        <input type="text" minlength="8" placeholder="Phone Number *" maxlength="11" name="phone" class="form-control"  value="" />
     </div>
     <div class="form-group">
-        <input id="password" type="password" placeholder="Password *" class="form-control"  name="password" required>
+        <input type="password" placeholder="Password *" class="form-control"  name="password" required>
     </div>
     <div class="form-group">
-        <input id="password-confirm" type="password" placeholder="Confirm Password *" class="form-control" name="password_confirmation" required>
+        <input type="password" placeholder="Confirm Password *" class="form-control" name="password_confirmation" required>
     </div>
     
 
     <div class="form-group">
-        <input id="email" type="email" placeholder="Email *" class="form-control" name="email" value="" required>
+        <input type="email" placeholder="Email *" class="form-control" name="email" value="" required>
         
     </div>
     <div class="form-group">
