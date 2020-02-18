@@ -1,6 +1,5 @@
-<div class="row">
-        <div class="col-md">
-            <table id="mytable" class="table table-bordred table-striped">  
+        <div style="overflow-x:auto;">
+            <table id="mytable" class="table table-bordred table-striped" style="width:100%;">  
                 <thead>
                 <tr> &nbsp; &nbsp; 
                     <th><i class="fa fa-users"></i>&nbsp; &nbsp; &nbsp;FULL NAME</th>
@@ -47,7 +46,6 @@
                 </tbody>
             </table>
     </div>
-</div>
 <div class="row">
     <div class="col-md">
         @isset($employees)

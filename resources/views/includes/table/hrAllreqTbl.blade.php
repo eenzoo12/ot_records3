@@ -1,5 +1,5 @@
 <div style="overflow-x:auto;">
-    <table id="mytable" class="table table-bordred table-striped" style="width:120%;">  
+    <table id="mytable" class="table table-bordred table-striped" style="width:130%;">  
         <thead>
             <tr>
                 <th>NAME</th>
@@ -13,7 +13,7 @@
                 <th>RESULTS</th>
                 <th>SUPERVISOR</th>
                 <th>MANAGER</th>
-                <th>DATE OF APPROVAL</th>
+                <th>DATE APPROVED</th>
             </tr>
         </thead>
         <tbody>

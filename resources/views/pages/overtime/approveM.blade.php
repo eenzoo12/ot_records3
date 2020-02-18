@@ -11,18 +11,9 @@
         <div class="card text-middle">
             <div class="card-header">
                 <div class="row" style="margin: 20px 0px;">
-                    <div class="col-md-9">
+                    <div class="col-md">
                         <h1 style="text-align:center;">MANAGER</h1>
                     </div> 
-                    <div class="col-md-3">
-                        <form action="{{url('search')}}" method="GET" style=" text-align:center">
-                        {{csrf_field()}}
-                            <input type="search" name="search" placeholder="Search name here.." style="width: 80%;
-                            height: calc(1.6em + 0.75rem + 2px); ">
-                            <button type="submit" style="width:12%;
-                            height: calc(1.6em + 0.75rem + 2px); "><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
                 </div>
             </div>
             <div class="card-body">

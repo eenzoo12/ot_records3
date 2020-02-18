@@ -1,6 +1,7 @@
+   <br> 
     <div class="row mb-1">
         <div class="col-md">
-            <div class="table-responsive-lg w-100 text-nowrap" style='min-height: 400px;overflow:auto'{{-- style="width: 100%;height: 410px;overflow:auto" --}}>
+            <div class="table-responsive-lg w-100 text-nowrap" style='min-height: 400px;overflow:auto'>
                 <table id="mytable" class="table table-bordred table-striped" style="width:110%;">  
                     <thead>
                         <tr>

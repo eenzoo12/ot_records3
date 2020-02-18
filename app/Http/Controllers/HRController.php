@@ -9,6 +9,9 @@ use App\agency;
 use App\ot_shift;
 use Auth;
 use DB;
+use Carbon\Carbon;
+use App\Exports\RequestsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HRController extends Controller
 {
@@ -60,6 +63,21 @@ class HRController extends Controller
         $reports = $reports->orderBy('date', 'DESC')->paginate(10);
 
         return view('includes.table.hrAllreqTbl', compact('reports', 'agencies', 'employees', 'shifts'));
+    }
+
+    public function exportRequest(Request $req){
+        $filename = 'OVERTIME_';
+        if($req->input('otfrom') == $req->input('otto')){
+            $filename .= $req->input('otfrom').'_'.Date('His');
+        }
+        else{
+            $filename .= $req->input('otfrom').'_to_'.$req->input('otto').'_'.Date('His');
+        }
+        return Excel::download(new RequestsExport(
+            $req->input('otfrom'),
+            $req->input('otto'),
+            $req->input('shift')
+        ), $filename.'.xlsx');
     }
 
     /**
@@ -131,4 +149,5 @@ class HRController extends Controller
     {
         //
     }
+    
 }

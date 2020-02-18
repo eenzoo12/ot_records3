@@ -5,6 +5,9 @@ function LoadHrTbl(search, url = 'hreq'){
       data: search,
       success: function (data) {
           $('#HrTable').html(data); 
+          $('#otfrom_x').val($('#otfrom_s').val());
+          $('#otto_x').val($('#otto_s').val());
+          $('#shift_x').val($('#shift_s').val());
       }
   });
 
@@ -19,6 +22,7 @@ LoadHrTbl();
 
     LoadHrTbl(form);
 
+
  });
 
  $('#searchNForm').on('submit', function(e){
@@ -31,19 +35,8 @@ LoadHrTbl();
 
  });
 
-$('#xportdta').on('click', function(){
-    $.ajax({
-        success:function(data){
-            if (data == 'success') {
-                    iziToast.success({
-                      title: 'Success',
-                      position: 'topCenter',
-                      message: 'Request Approved!'
-                    });
-                  }
-        }
-    });
-});
+
+
 
 
  // TABLE RELOAD PAGINATE 
@@ -52,3 +45,21 @@ $('#HrTable').on('click', '.page-link', function(e){
     LoadAdminTbl('',$(this).attr('href'));
 });
 
+
+// function ExportTbl(search, url = 'xport'){
+//     $.ajax({
+//       url: url,
+//       type:'get',
+//       data: search,
+//       success: function (data) {
+//         if (data == 'success') {
+//             iziToast.success({
+//             title: 'Success',
+//             position: 'topCenter',
+//             message: 'Request Overtime imported!',
+//             });
+//         }
+//       }
+//   });
+
+// }

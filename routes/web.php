@@ -22,19 +22,12 @@ Route::get('/', 'HomeController@pages');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-//User Controller
+//User,Requester,HR Controller
 Route::resources([
     'employees' => 'UserController',
-]);
-//Request Overtime
-Route::resources([
     'requests' => 'RequesterController',
-]);
-//HR Request View
-Route::resources([
     'hreq' => 'HRController',
 ]);
-
 
 
 // User Registration
@@ -50,6 +43,11 @@ Route::post('approve2', 'ManagerController@approve');
 Route::post('decline2', 'ManagerController@decline');
 Route::get('mgr', 'ManagerController@index');
 
+
+// IMPORTING 
+Route::post('importdata', 'RequesterController@import')->name('importdata');
+// EXPORTING
+Route::get('xport', 'HRController@exportRequest');
 
 
 // View Pages

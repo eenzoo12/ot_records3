@@ -44,6 +44,41 @@ $( "#requestSubmitBtn" ).on( "click", function(e) {
   });
 });
 
+
+// Request Bulk Overtime 
+$('#ImportRequest').on('submit', function(e){
+
+    e.preventDefault();
+
+    var form = $('#ImportRequest').serialize();
+    var url = $(this).attr('action');
+    $.ajax({
+        url: url,
+        type:'post',
+        data: form,
+        success: function (data) {
+            LoadRequestTbl();
+                if (data == 'success') {
+                    iziToast.success({
+                    title: 'Success',
+                    position: 'topCenter',
+                    message: 'Request Successfully Imported',
+                    });
+                }
+            },
+            error:function(error){
+                LoadRequestTbl();
+                iziToast.error({
+                    title: 'Failed',
+                    position: 'topCenter',
+                    message: 'Request Import Failed!'
+                });
+                
+            }
+      });
+
+});
+
 // TABLE RELOAD PAGINATE 
 $('#requestTable').on('click', '.page-link', function(e){
     e.preventDefault();

@@ -24,7 +24,8 @@ class SupervisorController extends Controller
         $dept = Auth::user()->department_id;
 
         
-        $reports = ot_tbl::where('department_id', 'like', $dept)->where('first_process', 'like', '')->orderBy('id', 'DESC')->paginate(10);
+        $reports = ot_tbl::where('department_id', 'like', $dept)
+                ->whereNull('first_process')->paginate(10);
         return view('includes.table.supervisorTbl', compact('reports', 'agencies', 'employees', 'shifts'));
     }
     /**

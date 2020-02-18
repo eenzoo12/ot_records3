@@ -3,6 +3,8 @@
 namespace App\Exports;
 
 use App\ot_tbl;
+use Auth;
+use Carbon\Carbon;
 
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
@@ -27,33 +29,11 @@ class RequestsExport implements FromQuery, WithMapping, WithHeadings, WithEvents
     /**
     * @return \Illuminate\Support\Collection
     */
-    
-    
-    public function query()
+    public function __construct($from,$to,$shift)
     {
-        // GET ALL = return ot_tbl::all();
-        // Selecting row longcut  = return ot_tbl::select('id', 'name', 'job_content')->where('id', '>', '5');
-        return ot_tbl::where('id', '<', '5');
-    }
-
-    // Data to be shown
-    public function map($request): array
-    {
-        return [
-            
-            $request->name,
-            'Custom try text '.$request->department->name,
-            $request->date,
-            $request->shift->name,
-            $request->time_from,
-            $request->time_to,
-            $request->time_hrs,
-            $request->job_content, 
-            $request->results,
-            $request->first_process,
-            $request->second_process,
-            $request->updated_at->toDateTimeString(),
-        ];
+        $this->from = $from;
+        $this->to = $to;
+        $this->shift = $shift;
     }
 
     // Heading of Data in Excel
@@ -73,6 +53,53 @@ class RequestsExport implements FromQuery, WithMapping, WithHeadings, WithEvents
             'Manager',
             'Date Approved',
         ];
+    }
+
+    // Data to be shown
+    public function map($request): array
+    {
+        return [
+            
+            $request->name,
+            $request->department->name,
+            $request->date,
+            $request->shift->name,
+            $request->time_from,
+            $request->time_to,
+            $request->time_hrs,
+            $request->job_content, 
+            $request->results,
+            $request->first_process,
+            $request->second_process,
+            $request->updated_at->toDateTimeString(),
+        ];
+    }
+    public function query()
+    {
+        $date1 = $this->from;
+        $date2 = Carbon::parse($this->to.' 06:00:00')->addDay();
+
+        if(Auth::user()->position_id==5){
+            $request = ot_tbl::where('agency_id', 'like', '1');
+        }
+        elseif(Auth::user()->position_id==6){
+            $request = ot_tbl::where('agency_id', 'like', '2' );
+        }
+        elseif(Auth::user()->position_id==7){
+            $request = ot_tbl::where('agency_id', 'like', '3');
+        }
+        elseif(Auth::user()->position_id==8){
+            $request = ot_tbl::where('agency_id', 'like', '4');
+        }
+
+        
+        $request = $request->whereDate('date','>=',$date1.' 06:00:00')
+                            ->whereDate('date','<',$date2)
+                            ->where('shift_sched',$this->shift);
+                        
+         return $request;
+       
+        
     }
 
     // Created_at not working

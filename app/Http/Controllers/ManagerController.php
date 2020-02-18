@@ -24,7 +24,7 @@ class ManagerController extends Controller
         
         $reports = ot_tbl::where('department_id', 'like', $dept)
                         ->where('first_process', 'like', 'Approved')
-                        ->where('second_process', 'like', '')->paginate(10);
+                        ->whereNull('second_process')->paginate(10);
         return view('includes.table.managerTbl', compact('reports', 'agencies', 'employees', 'shifts'));
 
 

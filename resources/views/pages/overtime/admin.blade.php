@@ -119,7 +119,7 @@
                                     {{csrf_field()}}
                                     {{method_field('delete')}}
                             <div class="modal-body">
-                                    <input type="hidden" name="employee_id"  value="">
+                                    <input type="hidden" name="employee_id" id="emp_id" value="">
                                     <p class="text-left"> Are you sure you want to delete this record?
                                     </p>
                                     

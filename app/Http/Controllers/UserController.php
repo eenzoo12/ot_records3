@@ -21,7 +21,7 @@ class UserController extends Controller
         $departments = department_tbl::all();
         $name = $request->input('searchtxt');
         if($name == ""){
-            $employees = User::orderBy('id', 'DESC')->paginate(10);
+            $employees = User::paginate(10);
         }
         else{
             $employees = User::where('name', 'like', '%'.$name.'%')->paginate(10);

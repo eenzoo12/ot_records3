@@ -86,10 +86,10 @@ $(document).ready(function(){
             error:function(error){
                 $('#regModal').modal("hide")
 
-                iziToast.success({
+                iziToast.error({
                     title: 'Failed',
                     position: 'topCenter',
-                    message: 'User Failed Register!'
+                    message: 'User Registration! <br>Please check your input'
                 });
             }
 
