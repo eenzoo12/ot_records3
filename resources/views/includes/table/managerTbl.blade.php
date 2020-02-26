@@ -1,6 +1,6 @@
 
 <div style="overflow-x:auto;">
-    <table id="mytable" class="table table-bordred table-striped" >  
+    <table id="mytable" class="table table-bordred table-striped" style="width:105%;">  
         <thead>
         <tr>
             <td><input type="checkbox" id="checkall"></td>

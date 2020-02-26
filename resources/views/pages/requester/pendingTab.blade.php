@@ -1,12 +1,12 @@
    <br> 
     <div class="row mb-1">
         <div class="col-md">
-            <div class="table-responsive-lg w-100 text-nowrap" style='min-height: 400px;overflow:auto'>
+            <div class="table-responsive-lg w-100 text-nowrap" style='min-height: 100px;overflow:auto'>
                 <table id="mytable" class="table table-bordred table-striped" style="width:110%;">  
                     <thead>
                         <tr>
                             <th>NAME</th>
-                            <th>DEPARTMENT</th>
+                            <th>AGENCY</th>
                             <th>OT_DATE</th>
                             <th>SHIFT</th>
                             <th>FROM</th>
@@ -26,7 +26,7 @@
                                     @foreach ($reports as $report)
                                         <tr>
                                             <td>{{$report->name}}</td>
-                                            <td>{{$report->department->name}}</td>
+                                            <td>{{$report->agency->name}}</td>
                                             <td>{{$report->date}}</td>
                                             <td>{{$report->shift->name}}</td>
                                             <td>{{$report->time_from}}</td>

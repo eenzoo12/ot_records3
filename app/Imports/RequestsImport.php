@@ -13,6 +13,8 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use Illuminate\Support\Collection;
+// use Maatwebsite\Excel\Concerns\ToCollection; ToCollection
 use Carbon\Carbon;
 
 HeadingRowFormatter::default('none');
@@ -30,7 +32,9 @@ class RequestsImport implements ToModel, WithBatchInserts, WithChunkReading, Wit
     public function sheets(): array
     {
         return [
-             new FirstSheetImport() 
+            
+                0 => $this,
+          
         ];
     }
     public function rules(): array
@@ -39,8 +43,8 @@ class RequestsImport implements ToModel, WithBatchInserts, WithChunkReading, Wit
             'Name' => 'required|string',
             'department_id' =>  'required|int',
             'date' => 'required',
-            'shift_id' =>  'required|int',
-            'agency_id' => 'required|int',
+            'shift' =>  'required|int',
+            'agency' => 'required|int',
             'job_content' =>  'required|string',
             'results' =>  'required|string',
             'time_from' =>  'required',
@@ -55,8 +59,8 @@ class RequestsImport implements ToModel, WithBatchInserts, WithChunkReading, Wit
             'name'     => $row['Name'],
             'department_id' => $row['department_id'],
             'date' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date']),
-            'shift_sched' => $row['shift_id'],   
-            'agency_id' => $row['agency_id'],
+            'shift_sched' => $row['shift'],   
+            'agency_id' => $row['agency'],
             'job_content' => $row['job_content'],
             'results' => $row['results'],
             'time_from' => $row['time_from'],
@@ -73,6 +77,16 @@ class RequestsImport implements ToModel, WithBatchInserts, WithChunkReading, Wit
     {
         return 1000;
     }
+    // public function collection(Collection $row)
+    // {
+    //     foreach ($rows as $row) 
+    //     {
+    //         ot_tbl::create([
+    //             'name' => $row[0],
+                
+    //         ]);
+    //     }
+    // }
 
     
 }

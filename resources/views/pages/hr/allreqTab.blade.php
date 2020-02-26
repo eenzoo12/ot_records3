@@ -3,12 +3,14 @@
 <br>
 <div class="row">
     <div class="col-md-2">
-    <form id="xportdta" action="{{ url('xport') }}" method="GET">
+        @if(Auth::user()->position_id==5 || Auth::user()->position_id==6 || Auth::user()->position_id==7 || Auth::user()->position_id==8 )
+        <form id="xportdta" action="{{ url('xport') }}" method="GET">
             <button type="submit" class="btn btn-success" style="width:120px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; EXPORT</button>
             <input type="hidden" name="otfrom" id="otfrom_x">
             <input type="hidden" name="otto" id="otto_x"> 
             <input type="hidden" name="shift" id="shift_x">
-        </form>   {{-- <a href="xport" class="w3-btn w3-green w3-round"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; EXPORT</a> --}}
+        </form>  
+        @endif
     </div>
     <div class="col-md-7">
         <form id="searchHrForm" action="" method="POST" >
@@ -20,7 +22,8 @@
                 <select name="shift" id="shift_s" class="form-control" required>
                     <option value="" selected="selected" disabled>Shift Schedule &nbsp;</option> 
                     <option value="1">DAY</option> 
-                    <option value="2">NIGHT</option> 
+                    <option value="2">NIGHT</option>
+                    <option value="3">ALL SHIFT</option>
                 </select>
                 <button type="submit" id="date-search-button">Go</button>
             </div>

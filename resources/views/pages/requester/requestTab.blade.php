@@ -69,12 +69,12 @@
         <div class="col-md-4 ">
             <div class="container2">
                 <h4>Job Content: </h4>
-                <textarea rows="5" cols="38" style="resize:none; padding:5px;" placeholder="Input text here.. " name="job_content" required></textarea>
+                <textarea rows="4" cols="38" style="resize:none; padding:5px;" placeholder="Input text here.. " name="job_content" required></textarea>
                 <h4>Results: </h4>
-                <textarea  rows="5" cols="38" style="resize:none; padding:5px; " placeholder="Input text here.. " name="results" required></textarea>
+                <textarea  rows="4" cols="38" style="resize:none; padding:5px; " placeholder="Input text here.. " name="results" required></textarea>
             </div>
             <div class="row justify-content-center">
-                <button type="button" id="requestSubmitBtn" class="btn btn-info" style="margin-top:10px;">Submit</button>
+                <button type="button" id="requestSubmitBtn" class="btn btn-info" style="margin-top:10px; width:120px; color:white">Submit</button>
             </div>
             
         </div>

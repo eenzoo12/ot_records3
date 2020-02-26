@@ -34,9 +34,7 @@ class RequesterController extends Controller
                             $query->whereNull('first_process')
                                 ->orwhere('first_process', '!=', 'Declined');
                         })
-                        ->whereNull('second_process')
-                        
-                        ->orderBy('id', 'DESC')->paginate(10);
+                        ->whereNull('second_process')->paginate(10);
         return view('pages.requester.pendingTab',compact('reports','employees','agencies','shift' ));
     }
 

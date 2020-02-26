@@ -52,15 +52,22 @@ class HRController extends Controller
         }
         
 
-        // Sort the category
+        // // Sort the category
         if($datefrom && $dateto)
         {
-            $reports = $reports->whereBetween('date',[$datefrom, $dateto])
-                        ->where('shift_sched',$shift);
+            $reports = $reports->whereBetween('date',[$datefrom, $dateto]);
+        }
+
+        if($shift == 1){
+            $reports = $reports->where('shift_sched', 'like', '1' );
+        }
+        elseif($shift == 2){
+            $reports = $reports->where('shift_sched', 'like', '2' );
         }
         
+        
         // Final Query for Overtime record
-        $reports = $reports->orderBy('date', 'DESC')->paginate(10);
+        $reports = $reports->orderBy('date')->paginate(10);
 
         return view('includes.table.hrAllreqTbl', compact('reports', 'agencies', 'employees', 'shifts'));
     }

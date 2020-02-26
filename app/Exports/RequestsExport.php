@@ -51,7 +51,8 @@ class RequestsExport implements FromQuery, WithMapping, WithHeadings, WithEvents
             'Results',
             'Supervisor',
             'Manager',
-            'Date Approved',
+            'Date Created',
+            'Last Update'
         ];
     }
 
@@ -71,6 +72,7 @@ class RequestsExport implements FromQuery, WithMapping, WithHeadings, WithEvents
             $request->results,
             $request->first_process,
             $request->second_process,
+            $request->created_at->toDateTimeString(),
             $request->updated_at->toDateTimeString(),
         ];
     }
@@ -78,6 +80,7 @@ class RequestsExport implements FromQuery, WithMapping, WithHeadings, WithEvents
     {
         $date1 = $this->from;
         $date2 = Carbon::parse($this->to.' 06:00:00')->addDay();
+        $shiftChosen = $this->shift;
 
         if(Auth::user()->position_id==5){
             $request = ot_tbl::where('agency_id', 'like', '1');
@@ -91,11 +94,17 @@ class RequestsExport implements FromQuery, WithMapping, WithHeadings, WithEvents
         elseif(Auth::user()->position_id==8){
             $request = ot_tbl::where('agency_id', 'like', '4');
         }
-
+        
+        if($shiftChosen == 1){
+            $request = $request->where('shift_sched', 'like', '1' );
+        }
+        elseif($shiftChosen == 2){
+            $request = $request->where('shift_sched', 'like', '2' );
+        }
+        
         
         $request = $request->whereDate('date','>=',$date1.' 06:00:00')
-                            ->whereDate('date','<',$date2)
-                            ->where('shift_sched',$this->shift);
+                            ->whereDate('date','<',$date2);
                         
          return $request;
        
