@@ -5,10 +5,12 @@
     <div class="col-md-2">
         @if(Auth::user()->position_id==5 || Auth::user()->position_id==6 || Auth::user()->position_id==7 || Auth::user()->position_id==8 )
         <form id="xportdta" action="{{ url('xport') }}" method="GET">
-            <button type="submit" class="btn btn-success" style="width:120px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; EXPORT</button>
-            <input type="hidden" name="otfrom" id="otfrom_x">
-            <input type="hidden" name="otto" id="otto_x"> 
-            <input type="hidden" name="shift" id="shift_x">
+            <h1 class="kreep" style="margin-top:-10px;">
+                <button type="submit" class="btn btn-success" style="width:120px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; EXPORT</button>
+                <input type="hidden" name="otfrom" id="otfrom_x">
+                <input type="hidden" name="otto" id="otto_x"> 
+                <input type="hidden" name="shift" id="shift_x">
+            </h1> 
         </form>  
         @endif
     </div>

@@ -4,7 +4,7 @@
         <tr>
             <td><input type="checkbox" id="checkall"></td>
             <th>NAME</th>
-            <th>DEPARTMENT</th>
+            <th>AGENCY</th>
             <th>OT_DATE</th>
             <th>SHIFT</th>
             <th>FROM</th>
@@ -22,7 +22,7 @@
                         <tr >
                             <td><input type="checkbox" class="checkitem" value="{{$report->id }}"></td>
                             <td>{{$report->name}}</td>
-                            <td>{{$report->department->name}}</td>
+                            <td>{{$report->agency->name}}</td>
                             <td>{{$report->date}}</td>
                             <td>{{$report->shift->name}}</td>
                             <td>{{$report->time_from}}</td>
@@ -30,7 +30,6 @@
                             <td>{{$report->time_hrs}}</td>
                             <td>{{$report->job_content}}</td>
                             <td>{{$report->results}}</td>
-                            
                         </tr>
 
                     @endforeach

@@ -42,7 +42,7 @@ LoadHrTbl();
  // TABLE RELOAD PAGINATE 
 $('#HrTable').on('click', '.page-link', function(e){
     e.preventDefault();
-    LoadAdminTbl('',$(this).attr('href'));
+    LoadHrTbl('',$(this).attr('href'));
 });
 
 

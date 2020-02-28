@@ -1,5 +1,5 @@
 <div style="overflow-x:auto;">
-    <table id="mytable" class="table table-bordred table-striped" style="width:130%;">  
+    <table id="mytable" class="table table-bordred table-striped" style="width:140%;">  
         <thead>
             <tr>
                 <th>NAME</th>
@@ -13,6 +13,7 @@
                 <th>RESULTS</th>
                 <th>SUPERVISOR</th>
                 <th>MANAGER</th>
+                <th>DATE CREATED</th>
                 <th>DATE APPROVED</th>
             </tr>
         </thead>
@@ -39,6 +40,7 @@
                                 <td>{{$report->results}}</td>
                                 <td>{{$report->first_process}}</td>
                                 <td>{{$report->second_process}}</td>
+                                <td>{{$report->created_at}}</td>
                             @if($report->first_process == "Approved" && $report->second_process == "Approved")
                                 <td>{{$report->updated_at}}</td>
                             @elseif($report->first_process == "Declined" || $report->second_process == "Declined")
